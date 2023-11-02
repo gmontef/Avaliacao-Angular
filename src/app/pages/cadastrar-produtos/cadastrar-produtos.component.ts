@@ -37,14 +37,12 @@ export class CadastrarProdutosComponent {
     const produtoData = this.produtoForm.value;
   
     if (produtoData.nome && produtoData.codigoBarras && produtoData.preco) {
-      // Converte o preço de texto para número
-      const precoNumerico = parseFloat(produtoData.preco.toString().replace(',', '.'));
-  
+
       const produto: IProdutos = {
         id: 0,
         nome: produtoData.nome,
         codigoBarras: produtoData.codigoBarras,
-        preco: precoNumerico.toFixed(2), 
+        preco: produtoData.preco, 
       };
   
       this.produtosService.cadastrarProdutos(produto).subscribe(
