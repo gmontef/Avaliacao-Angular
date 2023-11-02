@@ -73,9 +73,8 @@ export class ProdutosComponent implements OnInit {
         updatedProduto.codigoBarras = result.value[1];
         updatedProduto.preco = parseFloat(result.value[2]);
   
-        this.produtosService.editarItem(produto.id, updatedProduto).subscribe( // Altere 'updatedProduto' para 'produto.id, updatedProduto'
+        this.produtosService.editarItem(produto.id, updatedProduto).subscribe( 
           response => {
-            // Recupere os dados atualizados do servidor.
             this.produtosService.buscarTodos().subscribe(
               produtos => { 
                 this.produtos = produtos; 

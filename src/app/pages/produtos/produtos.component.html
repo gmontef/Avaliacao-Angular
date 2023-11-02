@@ -18,19 +18,21 @@
         <td>{{ produto.codigoBarras }}</td>
         <td>{{ produto.preco | currency:'BRL' }} </td>
         <td class="text-center">
-          <button type="button" class="btn btn-primary btn-sm" (click)="editarItem(produto)">
-            <i class="fas fa-pencil-alt"></i> <!-- Ícone de lápis -->
+          <button type="button" class="btn btn-primary btn-sm" style="margin-right: 10px;" (click)="editarItem(produto)">
+            <i class="bi bi-pencil-square"></i>
           </button>
           <button type="button" class="btn btn-danger btn-sm" (click)="deletarItem(produto.id)">
-            <i class="fas fa-trash"></i> <!-- Ícone de lixeira -->
+            <i class="bi bi-trash3"></i> 
           </button>
         </td>
       </tr>
     </tbody>
   </table>
-
   <div class="text-left w-100">
+    
+    <a class="btn btn-secondary me-1" style="margin-right: 10px;" routerLink="/">Voltar para a Home</a>
     <a class="btn btn-primary" routerLink="/produtos/cadastrar">Cadastrar Produto</a>
+    
   </div>
 
 </div>
