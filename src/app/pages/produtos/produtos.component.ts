@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IProdutos } from 'src/app/interfaces/produtos';
 import { ProdutosService } from 'src/app/services/produtos.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-produtos',
@@ -51,42 +52,4 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
-  editarItem(produto: IProdutos) {
-    Swal.fire({
-      title: 'Editar Produto',
-      html:
-        '<input id="swal-input1" class="swal2-input" placeholder="Nome do Produto">' +
-        '<input id="swal-input2" class="swal2-input" placeholder="Código de Barras">' +
-        '<input id="swal-input3" class="swal2-input" placeholder="Preço">',
-      focusConfirm: false,
-      preConfirm: () => {
-        return [
-          (<HTMLInputElement>document.getElementById('swal-input1')).value,
-          (<HTMLInputElement>document.getElementById('swal-input2')).value,
-          (<HTMLInputElement>document.getElementById('swal-input3')).value
-        ]
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        let updatedProduto = {...produto};
-        updatedProduto.nome = result.value[0];
-        updatedProduto.codigoBarras = result.value[1];
-        updatedProduto.preco = parseFloat(result.value[2].replace(',', '.')).toFixed(2);
-  
-        this.produtosService.editarItem(produto.id, updatedProduto).subscribe(
-          response => {
-            this.produtosService.buscarTodos().subscribe(
-              produtos => { 
-                this.produtos = produtos; 
-              }
-            );
-          },
-          error => {
-            console.log(error);
-          }
-        );
-      }
-    });
-  }  
-  
 }

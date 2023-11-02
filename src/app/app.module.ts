@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
+import { EditarProdutosComponent } from './pages/editar-produto/editar-produto.component';
 
 registerLocaleData(ptBr);
 
@@ -21,7 +22,8 @@ registerLocaleData(ptBr);
     HeaderComponent,
     ProdutosComponent,
     CadastrarProdutosComponent, 
-    HomeComponent
+    HomeComponent, 
+    EditarProdutosComponent,
   ],
   imports: [
     BrowserModule,

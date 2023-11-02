@@ -4,6 +4,7 @@ import { ProdutosComponent } from './pages/produtos/produtos.component';
 
 import { CadastrarProdutosComponent } from './pages/cadastrar-produtos/cadastrar-produtos.component';
 import { HomeComponent } from './pages/home/home.component';
+import { EditarProdutosComponent } from './pages/editar-produto/editar-produto.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
     path: 'produtos/cadastrar', component: CadastrarProdutosComponent
   },
   {
-    path: 'produtos/editar/:id', component: CadastrarProdutosComponent
+    path: 'produtos/:id', component: EditarProdutosComponent
   }
 ];
 
