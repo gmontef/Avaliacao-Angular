@@ -35,25 +35,18 @@ export class CadastrarProdutosComponent {
 
   enviar() {
     const produtoData = this.produtoForm.value;
-
+  
     if (produtoData.nome && produtoData.codigoBarras && produtoData.preco) {
       // Converte o preço de texto para número
-      let precoNumerico;
-      const precoTexto = (produtoData.preco.toString() || '').replace('.', '').replace(',', '.');
-
-      if (Number.isInteger(parseFloat(precoTexto))) {
-        precoNumerico = parseInt(precoTexto, 10);
-      } else {
-        precoNumerico = parseFloat(precoTexto);
-      }
-
+      const precoNumerico = parseFloat(produtoData.preco.toString().replace(',', '.'));
+  
       const produto: IProdutos = {
         id: 0,
         nome: produtoData.nome,
         codigoBarras: produtoData.codigoBarras,
-        preco: precoNumerico,
+        preco: precoNumerico.toFixed(2), 
       };
-
+  
       this.produtosService.cadastrarProdutos(produto).subscribe(
         (result) => {
           Swal.fire(
@@ -71,4 +64,6 @@ export class CadastrarProdutosComponent {
       Swal.fire('Campos obrigatórios', 'Preencha todos os campos obrigatórios', 'warning');
     }
   }
+  
+  
 }

@@ -71,9 +71,9 @@ export class ProdutosComponent implements OnInit {
         let updatedProduto = {...produto};
         updatedProduto.nome = result.value[0];
         updatedProduto.codigoBarras = result.value[1];
-        updatedProduto.preco = parseFloat(result.value[2]);
+        updatedProduto.preco = parseFloat(result.value[2].replace(',', '.')).toFixed(2);
   
-        this.produtosService.editarItem(produto.id, updatedProduto).subscribe( 
+        this.produtosService.editarItem(produto.id, updatedProduto).subscribe(
           response => {
             this.produtosService.buscarTodos().subscribe(
               produtos => { 
@@ -87,7 +87,6 @@ export class ProdutosComponent implements OnInit {
         );
       }
     });
-  }
-  
+  }  
   
 }
