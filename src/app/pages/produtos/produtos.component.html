@@ -18,7 +18,12 @@
         <td>{{ produto.codigoBarras }}</td>
         <td>{{ produto.preco | currency:'BRL' }} </td>
         <td class="text-center">
-          <button type="button" class="btn btn-danger btn-sm" (click)="deletarItem(produto.id)">Deletar</button>
+          <button type="button" class="btn btn-primary btn-sm" (click)="editarItem(produto)">
+            <i class="fas fa-pencil-alt"></i> <!-- Ícone de lápis -->
+          </button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="deletarItem(produto.id)">
+            <i class="fas fa-trash"></i> <!-- Ícone de lixeira -->
+          </button>
         </td>
       </tr>
     </tbody>

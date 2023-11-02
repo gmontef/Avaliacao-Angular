@@ -37,7 +37,45 @@ export class ProdutosComponent implements OnInit {
       if (result.isConfirmed) {
         this.produtosService.deletarItem(id).subscribe(
           response => {
-            
+            this.produtosService.buscarTodos().subscribe(
+              produtos => { 
+                this.produtos = produtos; 
+              }
+            );
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+    });
+  }
+
+  editarItem(produto: IProdutos) {
+    Swal.fire({
+      title: 'Editar Produto',
+      html:
+        '<input id="swal-input1" class="swal2-input" placeholder="Nome do Produto">' +
+        '<input id="swal-input2" class="swal2-input" placeholder="Código de Barras">' +
+        '<input id="swal-input3" class="swal2-input" placeholder="Preço">',
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          (<HTMLInputElement>document.getElementById('swal-input1')).value,
+          (<HTMLInputElement>document.getElementById('swal-input2')).value,
+          (<HTMLInputElement>document.getElementById('swal-input3')).value
+        ]
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let updatedProduto = {...produto};
+        updatedProduto.nome = result.value[0];
+        updatedProduto.codigoBarras = result.value[1];
+        updatedProduto.preco = parseFloat(result.value[2]);
+  
+        this.produtosService.editarItem(produto.id, updatedProduto).subscribe( // Altere 'updatedProduto' para 'produto.id, updatedProduto'
+          response => {
+            // Recupere os dados atualizados do servidor.
             this.produtosService.buscarTodos().subscribe(
               produtos => { 
                 this.produtos = produtos; 
@@ -52,5 +90,5 @@ export class ProdutosComponent implements OnInit {
     });
   }
   
-  }
   
+}

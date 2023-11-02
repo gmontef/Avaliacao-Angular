@@ -19,9 +19,12 @@ export class ProdutosService {
   cadastrarProdutos(produto: IProdutos): Observable<IProdutos> {
     return this.http.post<IProdutos>(this.apiUrl, produto);
   }
-  deletarItem(id: number): Observable<any> {
-    return this.http.delete(`http://localhost:8080/api/produtos/${id}`);
-  }
-  
 
+  deletarItem(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  editarItem(id: number, produto: IProdutos): Observable<IProdutos> {
+    return this.http.put<IProdutos>(`${this.apiUrl}/${id}`, produto);
+  }
 }

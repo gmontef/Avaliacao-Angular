@@ -42,10 +42,8 @@ export class CadastrarProdutosComponent {
       const precoTexto = (produtoData.preco.toString() || '').replace('.', '').replace(',', '.');
 
       if (Number.isInteger(parseFloat(precoTexto))) {
-        // Se for um número inteiro, converta para um número inteiro
         precoNumerico = parseInt(precoTexto, 10);
       } else {
-        // Se não for um número inteiro, mantenha como ponto flutuante
         precoNumerico = parseFloat(precoTexto);
       }
 
@@ -53,7 +51,6 @@ export class CadastrarProdutosComponent {
         id: 0,
         nome: produtoData.nome,
         codigoBarras: produtoData.codigoBarras,
-        // Usa o preço numérico
         preco: precoNumerico,
       };
 
